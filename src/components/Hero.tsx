@@ -28,19 +28,6 @@ export function Hero() {
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
 
-            {/* Decorative lines */}
-            <motion.div
-                className="absolute top-1/3 left-0 h-px w-full bg-gradient-to-r from-transparent via-[var(--color-primary)]/30 to-transparent"
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ delay: 0.8, duration: 1.5 }}
-            />
-            <motion.div
-                className="absolute bottom-1/3 left-0 h-px w-full bg-gradient-to-r from-transparent via-[var(--color-accent)]/20 to-transparent"
-                initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
-                transition={{ delay: 1, duration: 1.5 }}
-            />
 
             <div className="container mx-auto px-6 relative z-10 max-w-7xl">
                 <div className="max-w-4xl mx-auto text-center">
