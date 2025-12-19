@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  /* ライトテーマ - 誠実感と信頼感を表現 */
+  --color-background: oklch(0.98 0.005 250);
+  --color-foreground: oklch(0.15 0.02 250);
+
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.15 0.02 250);
+
+  --color-primary: oklch(0.45 0.15 240);
+  --color-primary-foreground: oklch(0.98 0.01 250);
+
+  --color-secondary: oklch(0.96 0.005 250);
+  --color-secondary-foreground: oklch(0.25 0.02 250);
+
+  --color-muted: oklch(0.94 0.005 250);
+  --color-muted-foreground: oklch(0.45 0.02 250);
+
+  --color-accent: oklch(0.5 0.12 240);
+  --color-accent-foreground: oklch(0.98 0.01 250);
+
+  --color-border: oklch(0.9 0.005 250);
+
+  --font-family-sans: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+
+  /* Animations */
+  --animate-fade-up: fade-up 0.6s ease-out forwards;
+  --animate-fade-in: fade-in 0.4s ease-out forwards;
+
+  @keyframes fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-family-sans);
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+::selection {
+  background-color: oklch(0.45 0.15 240 / 0.2);
+  color: var(--color-foreground);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-foreground);
+}
+
+/* Glass morphism effect - light version */
+.glass {
+  background: oklch(1 0 0 / 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.9 0.005 250 / 0.8);
+  box-shadow: 0 4px 20px oklch(0 0 0 / 0.05);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle grid background - light version */
+.grid-bg {
+  background-image:
+    linear-gradient(oklch(0.9 0.005 250 / 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.9 0.005 250 / 0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
