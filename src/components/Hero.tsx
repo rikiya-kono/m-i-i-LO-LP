@@ -64,16 +64,16 @@ export function Hero() {
                     >
                         <Button
                             size="lg"
-                            onClick={() => document.querySelector('#expertise')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            業務分野を見る
+                            当事務所について
                         </Button>
                         <Button
                             variant="outline"
                             size="lg"
-                            onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => document.querySelector('#expertise')?.scrollIntoView({ behavior: 'smooth' })}
                         >
-                            事務所について
+                            業務分野を見る
                         </Button>
                     </motion.div>
                 </div>
