@@ -1,6 +1,5 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Card, CardContent } from './ui/card'
 import { MapPin, Phone, Printer, Train } from 'lucide-react'
 
 export function Contact() {
@@ -26,27 +25,30 @@ export function Contact() {
     ]
 
     return (
-        <section ref={sectionRef} id="contact" className="py-32 relative">
+        <section ref={sectionRef} id="contact" className="py-32 relative bg-[var(--color-secondary)]">
             <div className="container mx-auto px-6 max-w-7xl">
-                {/* Section header */}
+                {/* Section header - AMT style centered */}
                 <motion.div
-                    className="mb-16 text-center"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="mb-20 text-center"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
                 >
-                    <span className="text-[var(--color-primary)] text-sm font-medium tracking-widest uppercase">Access</span>
-                    <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[var(--color-foreground)]">アクセス</h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-full mt-4 mx-auto" />
+                    <span className="text-accent-en mb-4 block">Access</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
+                        アクセス
+                    </h2>
+                    <div className="accent-line mt-6 mx-auto" />
                 </motion.div>
 
-                <div className="grid lg:grid-cols-2 gap-12">
+                <div className="grid lg:grid-cols-2 gap-16">
                     {/* Map */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.2 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.2, duration: 0.8 }}
                     >
-                        <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--color-border)]/50 bg-[var(--color-card)]/30 shadow-xl">
+                        <div className="aspect-[4/3] overflow-hidden bg-white shadow-lg">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.5!2d139.7101!3d35.6892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzIxLjEiTiAxMznCsDQyJzM2LjQiRQ!5e0!3m2!1sja!2sjp!4v1"
                                 width="100%"
@@ -56,63 +58,73 @@ export function Contact() {
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 title="オフィス所在地"
-                                className="grayscale-[0.7] opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                                className="grayscale-[0.5] hover:grayscale-0 transition-all duration-500"
                             />
                         </div>
                     </motion.div>
 
                     {/* Office info */}
                     <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.3 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ delay: 0.4, duration: 0.8 }}
                     >
-                        <Card className="p-8 h-full bg-[var(--color-card)]/40">
-                            <CardContent className="p-0">
-                                <h3 className="text-xl font-semibold mb-1 text-[var(--color-foreground)]">{officeInfo.name}</h3>
-                                <p className="text-xs text-[var(--color-muted-foreground)] tracking-widest uppercase mb-8">{officeInfo.nameEn}</p>
+                        <div className="bg-white p-10 h-full">
+                            <h3 className="text-xl font-semibold mb-1 text-[var(--color-foreground)]">
+                                {officeInfo.name}
+                            </h3>
+                            <p className="text-xs text-[var(--color-muted-foreground)] tracking-widest uppercase mb-10">
+                                {officeInfo.nameEn}
+                            </p>
 
-                                <div className="space-y-6">
-                                    {contactItems.map((item, index) => (
-                                        <motion.div
-                                            key={item.label}
-                                            className="flex gap-4"
-                                            initial={{ opacity: 0, x: 20 }}
-                                            animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                            transition={{ delay: 0.4 + index * 0.1 }}
-                                        >
-                                            <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-primary)]">
-                                                <item.icon className="w-5 h-5" />
-                                            </div>
-                                            <div>
-                                                <p className="text-xs text-[var(--color-muted-foreground)] mb-1">{item.label}</p>
-                                                <p className="text-sm text-[var(--color-foreground)]">{item.value}</p>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-
-                                    {/* Access */}
+                            <div className="space-y-8">
+                                {contactItems.map((item, index) => (
                                     <motion.div
-                                        className="flex gap-4"
+                                        key={item.label}
+                                        className="flex gap-5"
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                        transition={{ delay: 0.7 }}
+                                        transition={{ delay: 0.5 + index * 0.1 }}
                                     >
-                                        <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-accent)]/10 flex items-center justify-center text-[var(--color-primary)]">
-                                            <Train className="w-5 h-5" />
+                                        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)]">
+                                            <item.icon className="w-5 h-5" />
                                         </div>
                                         <div>
-                                            <p className="text-xs text-[var(--color-muted-foreground)] mb-1">交通</p>
-                                            <ul className="space-y-1">
-                                                {officeInfo.access.map((item, index) => (
-                                                    <li key={index} className="text-sm text-[var(--color-muted-foreground)]">{item}</li>
-                                                ))}
-                                            </ul>
+                                            <p className="text-xs text-[var(--color-muted-foreground)] mb-1">
+                                                {item.label}
+                                            </p>
+                                            <p className="text-sm text-[var(--color-foreground)]">
+                                                {item.value}
+                                            </p>
                                         </div>
                                     </motion.div>
-                                </div>
-                            </CardContent>
-                        </Card>
+                                ))}
+
+                                {/* Access */}
+                                <motion.div
+                                    className="flex gap-5"
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                    transition={{ delay: 0.8 }}
+                                >
+                                    <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)]">
+                                        <Train className="w-5 h-5" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-[var(--color-muted-foreground)] mb-1">
+                                            交通
+                                        </p>
+                                        <ul className="space-y-1">
+                                            {officeInfo.access.map((item, index) => (
+                                                <li key={index} className="text-sm text-[var(--color-muted-foreground)]">
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
             </div>

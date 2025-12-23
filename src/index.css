@@ -2,37 +2,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  /* ライトテーマ - 誠実感と信頼感を表現 */
-  --color-background: oklch(0.98 0.005 250);
-  --color-foreground: oklch(0.15 0.02 250);
+  /* AMT-inspired Color Palette - Sophisticated & Professional */
+  --color-background: #ffffff;
+  --color-foreground: #0a1628;
 
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.15 0.02 250);
+  --color-card: #ffffff;
+  --color-card-foreground: #0a1628;
 
-  --color-primary: oklch(0.45 0.15 240);
-  --color-primary-foreground: oklch(0.98 0.01 250);
+  /* Primary: Deep Navy - Trust & Authority */
+  --color-primary: #0a1628;
+  --color-primary-foreground: #ffffff;
 
-  --color-secondary: oklch(0.96 0.005 250);
-  --color-secondary-foreground: oklch(0.25 0.02 250);
+  /* Secondary: Light Gray background */
+  --color-secondary: #f8f9fa;
+  --color-secondary-foreground: #1e3a5f;
 
-  --color-muted: oklch(0.94 0.005 250);
-  --color-muted-foreground: oklch(0.45 0.02 250);
+  /* Muted tones */
+  --color-muted: #e9ecef;
+  --color-muted-foreground: #6c757d;
 
-  --color-accent: oklch(0.5 0.12 240);
-  --color-accent-foreground: oklch(0.98 0.01 250);
+  /* Accent: Royal Blue */
+  --color-accent: #1e3a5f;
+  --color-accent-foreground: #ffffff;
 
-  --color-border: oklch(0.9 0.005 250);
+  /* Border */
+  --color-border: #dee2e6;
 
   --font-family-sans: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
 
   /* Animations */
-  --animate-fade-up: fade-up 0.6s ease-out forwards;
-  --animate-fade-in: fade-in 0.4s ease-out forwards;
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-in: slide-in 0.8s ease-out forwards;
 
   @keyframes fade-up {
     0% {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
     }
 
     100% {
@@ -48,6 +54,18 @@
 
     100% {
       opacity: 1;
+    }
+  }
+
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 }
@@ -67,48 +85,128 @@ body {
 
 /* Selection styling */
 ::selection {
-  background-color: oklch(0.45 0.15 240 / 0.2);
+  background-color: rgba(10, 22, 40, 0.15);
   color: var(--color-foreground);
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - minimal */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-muted);
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-muted-foreground);
 }
 
-/* Glass morphism effect - light version */
-.glass {
-  background: oklch(1 0 0 / 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid oklch(0.9 0.005 250 / 0.8);
-  box-shadow: 0 4px 20px oklch(0 0 0 / 0.05);
+/* AMT-style diagonal section divider */
+.section-diagonal {
+  position: relative;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.section-diagonal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: inherit;
+  transform: skewY(-2deg);
+  transform-origin: top left;
 }
 
-/* Subtle grid background - light version */
+/* Dark overlay for hero */
+.hero-overlay {
+  background: linear-gradient(135deg,
+      rgba(10, 22, 40, 0.85) 0%,
+      rgba(30, 58, 95, 0.75) 100%);
+}
+
+/* AMT-style circular button */
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  transition: all 0.3s ease;
+}
+
+.btn-circle:hover {
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* Subtle grid background */
 .grid-bg {
   background-image:
-    linear-gradient(oklch(0.9 0.005 250 / 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.9 0.005 250 / 0.5) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(rgba(10, 22, 40, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10, 22, 40, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Dark footer */
+.footer-dark {
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Section alternate background */
+.section-alt {
+  background-color: var(--color-secondary);
+}
+
+/* Large typography */
+.text-display {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Subtitle styling */
+.text-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-muted-foreground);
+}
+
+/* English accent text */
+.text-accent-en {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+/* Underline accent */
+.accent-line {
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+}
+
+/* Card hover effect - subtle */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(10, 22, 40, 0.08);
 }

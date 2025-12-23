@@ -1,6 +1,5 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Card, CardContent } from './ui/card'
 import { lawyers } from '../data/content'
 import { User } from 'lucide-react'
 
@@ -9,47 +8,51 @@ export function Team() {
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
     return (
-        <section ref={sectionRef} id="team" className="py-32 relative">
+        <section ref={sectionRef} id="team" className="py-32 relative bg-[var(--color-secondary)]">
             <div className="container mx-auto px-6 max-w-7xl">
-                {/* Section header */}
+                {/* Section header - AMT style */}
                 <motion.div
-                    className="mb-16 text-center"
-                    initial={{ opacity: 0, y: 30 }}
+                    className="mb-20 text-center"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
                 >
-                    <span className="text-[var(--color-primary)] text-sm font-medium tracking-widest uppercase">Team</span>
-                    <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[var(--color-foreground)]">弁護士紹介</h2>
-                    <div className="w-20 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-full mt-4 mx-auto" />
+                    <span className="text-accent-en mb-4 block">Our Lawyers</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
+                        弁護士紹介
+                    </h2>
+                    <div className="accent-line mt-6 mx-auto" />
                 </motion.div>
 
                 {/* Partners */}
                 <motion.div
-                    className="mb-12"
-                    initial={{ opacity: 0, y: 20 }}
+                    className="mb-16"
+                    initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                    <h3 className="text-base font-medium text-[var(--color-muted-foreground)] mb-6 flex items-center gap-3">
-                        <span className="w-10 h-px bg-gradient-to-r from-[var(--color-primary)] to-transparent" />
+                    <h3 className="text-sm font-medium text-[var(--color-muted-foreground)] mb-8 flex items-center gap-4">
+                        <span className="w-12 h-px bg-[var(--color-primary)]" />
                         パートナー
                     </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
                         {lawyers.partners.map((lawyer, index) => (
                             <motion.div
                                 key={lawyer.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ delay: 0.3 + index * 0.05 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
+                                className="group text-center"
                             >
-                                <Card className="text-center py-6 group hover:bg-[var(--color-card)]/60 cursor-default">
-                                    <CardContent className="p-0">
-                                        {/* Avatar */}
-                                        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-accent)]/20 flex items-center justify-center text-[var(--color-primary)]/60 group-hover:from-[var(--color-primary)]/30 group-hover:to-[var(--color-accent)]/30 group-hover:scale-110 transition-all duration-300 border border-[var(--color-primary)]/10">
-                                            <User className="w-7 h-7" />
-                                        </div>
-                                        <p className="font-medium text-sm text-[var(--color-foreground)] group-hover:text-[var(--color-primary)] transition-colors">{lawyer.name}</p>
-                                    </CardContent>
-                                </Card>
+                                <div className="bg-white p-6 card-hover">
+                                    {/* Avatar */}
+                                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-secondary)] flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-300">
+                                        <User className="w-7 h-7" />
+                                    </div>
+                                    <p className="font-medium text-sm text-[var(--color-foreground)]">
+                                        {lawyer.name}
+                                    </p>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
@@ -57,31 +60,32 @@ export function Team() {
 
                 {/* Associates */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.5 }}
+                    transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                    <h3 className="text-base font-medium text-[var(--color-muted-foreground)] mb-6 flex items-center gap-3">
-                        <span className="w-10 h-px bg-gradient-to-r from-[var(--color-primary)] to-transparent" />
+                    <h3 className="text-sm font-medium text-[var(--color-muted-foreground)] mb-8 flex items-center gap-4">
+                        <span className="w-12 h-px bg-[var(--color-primary)]" />
                         アソシエイト
                     </h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                         {lawyers.associates.map((lawyer, index) => (
                             <motion.div
                                 key={lawyer.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ delay: 0.6 + index * 0.05 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
+                                className="group text-center"
                             >
-                                <Card className="text-center py-5 group hover:bg-[var(--color-card)]/60 cursor-default">
-                                    <CardContent className="p-0">
-                                        {/* Avatar */}
-                                        <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-[var(--color-secondary)]/80 to-[var(--color-muted)]/50 flex items-center justify-center text-[var(--color-muted-foreground)]/60 group-hover:from-[var(--color-primary)]/20 group-hover:to-[var(--color-accent)]/20 group-hover:text-[var(--color-primary)]/60 group-hover:scale-110 transition-all duration-300">
-                                            <User className="w-6 h-6" />
-                                        </div>
-                                        <p className="font-medium text-sm text-[var(--color-foreground)] group-hover:text-[var(--color-primary)] transition-colors">{lawyer.name}</p>
-                                    </CardContent>
-                                </Card>
+                                <div className="bg-white p-5 card-hover">
+                                    {/* Avatar */}
+                                    <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-[var(--color-secondary)] flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300">
+                                        <User className="w-6 h-6" />
+                                    </div>
+                                    <p className="font-medium text-sm text-[var(--color-foreground)]">
+                                        {lawyer.name}
+                                    </p>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
