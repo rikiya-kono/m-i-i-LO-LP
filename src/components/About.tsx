@@ -42,7 +42,7 @@ export function About() {
                     animate={isInView ? "visible" : "hidden"}
                 >
                     <span className="text-[var(--color-primary)] text-sm font-medium tracking-widest uppercase">About Us</span>
-                    <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[var(--color-foreground)]">事務所について</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold mt-2 text-[var(--color-foreground)]">当事務所について</h2>
                     <div className="w-20 h-1 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] rounded-full mt-4" />
                 </motion.div>
 
