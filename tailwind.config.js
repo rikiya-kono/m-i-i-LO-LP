@@ -7,67 +7,54 @@ export default {
     theme: {
         extend: {
             colors: {
-                border: "hsl(var(--border))",
-                input: "hsl(var(--input))",
-                ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
-                foreground: "hsl(var(--foreground))",
+                border: "var(--color-border)",
+                input: "var(--color-input)",
+                ring: "var(--color-ring)",
+                background: "var(--color-background)",
+                foreground: "var(--color-foreground)",
                 primary: {
-                    DEFAULT: "hsl(var(--primary))",
-                    foreground: "hsl(var(--primary-foreground))",
+                    DEFAULT: "var(--color-primary)",
+                    foreground: "var(--color-primary-foreground)",
                 },
                 secondary: {
-                    DEFAULT: "hsl(var(--secondary))",
-                    foreground: "hsl(var(--secondary-foreground))",
+                    DEFAULT: "var(--color-secondary)",
+                    foreground: "var(--color-secondary-foreground)",
                 },
                 muted: {
-                    DEFAULT: "hsl(var(--muted))",
-                    foreground: "hsl(var(--muted-foreground))",
+                    DEFAULT: "var(--color-muted)",
+                    foreground: "var(--color-muted-foreground)",
                 },
                 accent: {
-                    DEFAULT: "hsl(var(--accent))",
-                    foreground: "hsl(var(--accent-foreground))",
+                    DEFAULT: "var(--color-accent)",
+                    foreground: "var(--color-accent-foreground)",
                 },
                 card: {
-                    DEFAULT: "hsl(var(--card))",
-                    foreground: "hsl(var(--card-foreground))",
+                    DEFAULT: "var(--color-card)",
+                    foreground: "var(--color-card-foreground)",
                 },
             },
             fontFamily: {
-                sans: ['Inter', '"Noto Sans JP"', 'system-ui', 'sans-serif'],
+                sans: ['Manrope', 'sans-serif'],
+                serif: ['Playfair Display', 'serif'],
+                mincho: ['Zen Old Mincho', 'serif'],
             },
             animation: {
-                'fade-up': 'fadeUp 0.6s ease-out forwards',
-                'fade-in': 'fadeIn 0.4s ease-out forwards',
-                'slide-in-left': 'slideInLeft 0.5s ease-out forwards',
-                'slide-in-right': 'slideInRight 0.5s ease-out forwards',
-                'scale-in': 'scaleIn 0.4s ease-out forwards',
-                'line-grow': 'lineGrow 0.6s ease-out forwards',
+                'fade-in-up': 'fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                'fade-in': 'fadeIn 1.2s ease-out forwards',
+                'reveal': 'reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards',
             },
             keyframes: {
-                fadeUp: {
-                    '0%': { opacity: '0', transform: 'translateY(30px)' },
+                fadeInUp: {
+                    '0%': { opacity: '0', transform: 'translateY(40px)' },
                     '100%': { opacity: '1', transform: 'translateY(0)' },
                 },
                 fadeIn: {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' },
                 },
-                slideInLeft: {
-                    '0%': { opacity: '0', transform: 'translateX(-30px)' },
-                    '100%': { opacity: '1', transform: 'translateX(0)' },
-                },
-                slideInRight: {
-                    '0%': { opacity: '0', transform: 'translateX(30px)' },
-                    '100%': { opacity: '1', transform: 'translateX(0)' },
-                },
-                scaleIn: {
-                    '0%': { opacity: '0', transform: 'scale(0.95)' },
-                    '100%': { opacity: '1', transform: 'scale(1)' },
-                },
-                lineGrow: {
-                    '0%': { width: '0%' },
-                    '100%': { width: '100%' },
+                reveal: {
+                    '0%': { clipPath: 'inset(0 100% 0 0)' },
+                    '100%': { clipPath: 'inset(0 0 0 0)' },
                 },
             },
         },

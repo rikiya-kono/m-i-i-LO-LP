@@ -48,7 +48,7 @@ export function Contact() {
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.2, duration: 0.8 }}
                     >
-                        <div className="aspect-[4/3] overflow-hidden bg-white shadow-lg">
+                        <div className="aspect-[4/3] overflow-hidden bg-card border border-white/5 shadow-2xl rounded-sm">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.5!2d139.7101!3d35.6892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzIxLjEiTiAxMznCsDQyJzM2LjQiRQ!5e0!3m2!1sja!2sjp!4v1"
                                 width="100%"
@@ -58,7 +58,7 @@ export function Contact() {
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 title="オフィス所在地"
-                                className="grayscale-[0.5] hover:grayscale-0 transition-all duration-500"
+                                className="grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 invert-[0.9]"
                             />
                         </div>
                     </motion.div>
@@ -69,7 +69,7 @@ export function Contact() {
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
                         transition={{ delay: 0.4, duration: 0.8 }}
                     >
-                        <div className="bg-white p-10 h-full">
+                        <div className="bg-card border border-white/5 p-10 h-full backdrop-blur-sm">
                             <h3 className="text-xl font-semibold mb-1 text-[var(--color-foreground)]">
                                 {officeInfo.name}
                             </h3>
@@ -86,7 +86,7 @@ export function Contact() {
                                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                                         transition={{ delay: 0.5 + index * 0.1 }}
                                     >
-                                        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)]">
+                                        <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)] bg-primary/5 rounded-full">
                                             <item.icon className="w-5 h-5" />
                                         </div>
                                         <div>
@@ -107,7 +107,7 @@ export function Contact() {
                                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                                     transition={{ delay: 0.8 }}
                                 >
-                                    <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)]">
+                                    <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center text-[var(--color-primary)] bg-primary/5 rounded-full">
                                         <Train className="w-5 h-5" />
                                     </div>
                                     <div>

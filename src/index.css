@@ -1,77 +1,81 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap');
 
 @theme {
-  /* AMT-inspired Color Palette - Sophisticated & Professional */
-  --color-background: #ffffff;
-  --color-foreground: #0a1628;
+  /* Dark Luxury Palette - "Lacquer & Gold" */
+  --color-background: #0c0c0c;
+  /* Deepest Charcoal/Black */
+  --color-foreground: #e6e6e6;
+  /* Off-white for text */
 
-  --color-card: #ffffff;
-  --color-card-foreground: #0a1628;
+  --color-card: #141414;
+  --color-card-foreground: #e6e6e6;
 
-  /* Primary: Deep Navy - Trust & Authority */
-  --color-primary: #0a1628;
-  --color-primary-foreground: #ffffff;
+  /* Primary: Muted Gold/Bronze */
+  --color-primary: #c9a227;
+  --color-primary-foreground: #000000;
 
-  /* Secondary: Light Gray background */
-  --color-secondary: #f8f9fa;
-  --color-secondary-foreground: #1e3a5f;
+  /* Secondary: Dark Gray */
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #ffffff;
 
-  /* Muted tones */
-  --color-muted: #e9ecef;
-  --color-muted-foreground: #6c757d;
+  /* Muted */
+  --color-muted: #2a2a2a;
+  --color-muted-foreground: #888888;
 
-  /* Accent: Royal Blue */
-  --color-accent: #1e3a5f;
-  --color-accent-foreground: #ffffff;
+  /* Accent: Subtle Silver/Platinum */
+  --color-accent: #a0a0a0;
+  --color-accent-foreground: #000000;
 
   /* Border */
-  --color-border: #dee2e6;
+  --color-border: #333333;
 
-  --font-family-sans: 'Inter', 'Noto Sans JP', system-ui, sans-serif;
+  /* Fonts */
+  --font-family-sans: 'Manrope', system-ui, sans-serif;
+  --font-family-serif: 'Playfair Display', serif;
+  --font-family-mincho: 'Zen Old Mincho', serif;
 
   /* Animations */
-  --animate-fade-up: fade-up 0.8s ease-out forwards;
-  --animate-fade-in: fade-in 0.6s ease-out forwards;
-  --animate-slide-in: slide-in 0.8s ease-out forwards;
+  --animate-fade-in-up: fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  --animate-fade-in: fadeIn 1.2s ease-out forwards;
+  --animate-reveal: reveal 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 
-  @keyframes fade-up {
-    0% {
+  @keyframes fadeInUp {
+    from {
       opacity: 0;
       transform: translateY(40px);
     }
 
-    100% {
+    to {
       opacity: 1;
       transform: translateY(0);
     }
   }
 
-  @keyframes fade-in {
-    0% {
+  @keyframes fadeIn {
+    from {
       opacity: 0;
     }
 
-    100% {
+    to {
       opacity: 1;
     }
   }
 
-  @keyframes slide-in {
+  @keyframes reveal {
     0% {
-      opacity: 0;
-      transform: translateX(-30px);
+      clip-path: inset(0 100% 0 0);
     }
 
     100% {
-      opacity: 1;
-      transform: translateX(0);
+      clip-path: inset(0 0 0 0);
     }
   }
 }
 
 html {
   scroll-behavior: smooth;
+  background-color: #0c0c0c;
 }
 
 body {
@@ -81,132 +85,52 @@ body {
   font-feature-settings: "palt";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Selection styling */
+/* Custom Utilities */
+.font-mincho {
+  font-family: var(--font-family-mincho);
+}
+
+.font-serif {
+  font-family: var(--font-family-serif);
+}
+
+/* Vertical Writing Mode Class */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.1em;
+}
+
+/* Glassmorphism - but darker */
+.glass-panel {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Smooth selection */
 ::selection {
-  background-color: rgba(10, 22, 40, 0.15);
-  color: var(--color-foreground);
+  background: var(--color-primary);
+  color: #000;
 }
 
-/* Scrollbar styling - minimal */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0c0c0c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-muted);
-  border-radius: 3px;
+  background: #333;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted-foreground);
-}
-
-/* AMT-style diagonal section divider */
-.section-diagonal {
-  position: relative;
-}
-
-.section-diagonal::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: inherit;
-  transform: skewY(-2deg);
-  transform-origin: top left;
-}
-
-/* Dark overlay for hero */
-.hero-overlay {
-  background: linear-gradient(135deg,
-      rgba(10, 22, 40, 0.85) 0%,
-      rgba(30, 58, 95, 0.75) 100%);
-}
-
-/* AMT-style circular button */
-.btn-circle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 2px solid currentColor;
-  transition: all 0.3s ease;
-}
-
-.btn-circle:hover {
-  background: var(--color-primary);
-  color: var(--color-primary-foreground);
-  border-color: var(--color-primary);
-  transform: scale(1.05);
-}
-
-/* Subtle grid background */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(10, 22, 40, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(10, 22, 40, 0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* Dark footer */
-.footer-dark {
-  background-color: #0a0a0a;
-  color: #ffffff;
-}
-
-/* Section alternate background */
-.section-alt {
-  background-color: var(--color-secondary);
-}
-
-/* Large typography */
-.text-display {
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-/* Subtitle styling */
-.text-subtitle {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--color-muted-foreground);
-}
-
-/* English accent text */
-.text-accent-en {
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-muted-foreground);
-}
-
-/* Underline accent */
-.accent-line {
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
-}
-
-/* Card hover effect - subtle */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(10, 22, 40, 0.08);
+  background: #555;
 }

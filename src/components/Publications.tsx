@@ -8,7 +8,7 @@ export function Publications() {
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
     return (
-        <section ref={sectionRef} id="publications" className="py-32 relative bg-white">
+        <section ref={sectionRef} id="publications" className="py-32 relative bg-background">
             <div className="container mx-auto px-6 relative z-10 max-w-7xl">
                 {/* Section header */}
                 <motion.div

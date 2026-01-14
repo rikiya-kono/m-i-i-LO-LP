@@ -44,9 +44,9 @@ export function Team() {
                                 transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
                                 className="group text-center"
                             >
-                                <div className="bg-white p-6 card-hover">
+                                <div className="bg-card border border-white/5 p-6 card-hover hover:border-primary/30 transition-colors">
                                     {/* Avatar */}
-                                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-[var(--color-secondary)] flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-primary)] group-hover:text-white transition-all duration-300">
+                                    <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-background flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-primary)] group-hover:text-black transition-all duration-300">
                                         <User className="w-7 h-7" />
                                     </div>
                                     <p className="font-medium text-sm text-[var(--color-foreground)]">
@@ -77,9 +77,9 @@ export function Team() {
                                 transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
                                 className="group text-center"
                             >
-                                <div className="bg-white p-5 card-hover">
+                                <div className="bg-card border border-white/5 p-5 card-hover hover:border-primary/30 transition-colors">
                                     {/* Avatar */}
-                                    <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-[var(--color-secondary)] flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-accent)] group-hover:text-white transition-all duration-300">
+                                    <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-background flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-accent)] group-hover:text-black transition-all duration-300">
                                         <User className="w-6 h-6" />
                                     </div>
                                     <p className="font-medium text-sm text-[var(--color-foreground)]">
