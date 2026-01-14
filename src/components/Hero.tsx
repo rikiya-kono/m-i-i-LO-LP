@@ -17,48 +17,31 @@ export function Hero() {
             <div className="container relative z-10 mx-auto px-6 h-screen flex flex-col justify-center items-center">
 
                 {/* Main Content - Centered & Elegant */}
-                <div className="flex flex-col items-center justify-center space-y-12 text-center z-20">
+                <div className="flex flex-col items-center justify-center space-y-10 text-center z-20">
 
-                    {/* English Intro */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="flex flex-col items-center space-y-4"
-                    >
-                        <span className="text-accent text-xs tracking-[0.4em] uppercase font-sans text-center">Corporate Reorganization & Insolvency</span>
-                        <div className="w-12 h-[1px] bg-primary/50" />
-                    </motion.div>
-
-                    {/* Main Title - Japanese Horizontal */}
+                    {/* Main Title - Office Name */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, delay: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 1.2, ease: "easeOut" }}
                     >
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-mincho font-bold tracking-widest text-foreground leading-tight drop-shadow-2xl">
-                            <span className="inline-block">誠実<span className="text-primary">.</span></span>
-                            <span className="inline-block md:ml-12 mt-4 md:mt-0">再生<span className="text-primary">.</span></span>
+                        <h1 className="flex flex-col items-center font-mincho font-bold text-foreground drop-shadow-2xl">
+                            <span className="text-xl md:text-2xl tracking-[0.2em] mb-6 text-primary block">弁護士法人</span>
+                            <span className="text-4xl md:text-6xl lg:text-7xl tracking-widest leading-tight">
+                                三宅・今井・池田<br />
+                                <span className="inline-block mt-4">法律事務所</span>
+                            </span>
                         </h1>
                     </motion.div>
 
                     {/* Subtitle / English Name */}
-                    <motion.h2
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 1.2 }}
-                        className="text-xl md:text-3xl font-serif text-muted-foreground italic"
-                    >
-                        Miyake, Imai & Ikeda Law Office
-                    </motion.h2>
-
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 1.5 }}
-                        className="text-muted-foreground/80 max-w-lg text-sm leading-relaxed font-sans"
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="text-sm md:text-lg font-serif text-muted-foreground italic tracking-wider mt-8"
                     >
-                        We provide specialized legal services for corporate revitalization, based on integrity and over 50 years of experience.
+                        Miyake, Imai & Ikeda Law Office
                     </motion.p>
                 </div>
             </div>
