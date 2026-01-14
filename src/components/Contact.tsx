@@ -58,7 +58,7 @@ export function Contact() {
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 title="オフィス所在地"
-                                className="grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 invert-[0.9]"
+                                className="opacity-80 hover:opacity-100 transition-opacity duration-500"
                             />
                         </div>
                     </motion.div>
