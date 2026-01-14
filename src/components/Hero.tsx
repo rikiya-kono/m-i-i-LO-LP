@@ -26,7 +26,6 @@ export function Hero() {
                         transition={{ duration: 1.2, ease: "easeOut" }}
                     >
                         <h1 className="flex flex-col items-center font-mincho font-bold text-foreground drop-shadow-2xl">
-                            <span className="text-xl md:text-2xl tracking-[0.2em] mb-6 text-primary block">弁護士法人</span>
                             <span className="text-4xl md:text-6xl lg:text-7xl tracking-widest leading-tight">
                                 三宅・今井・池田<br />
                                 <span className="inline-block mt-4">法律事務所</span>
