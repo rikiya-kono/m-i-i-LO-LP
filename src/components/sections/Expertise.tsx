@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, User } from 'lucide-react'
 import { useState } from 'react'
-import { expertise, lawyers } from '../data/content'
+import { expertise, lawyers } from '../../data'
 
 const allLawyers = [...lawyers.partners, ...lawyers.associates]
 
@@ -30,13 +30,8 @@ export function Expertise() {
     const [expandedId, setExpandedId] = useState<string | null>(null)
 
     return (
-        <section id="expertise" className="py-32 bg-secondary text-secondary-foreground relative">
+        <section id="expertise" className="pt-8 pb-24 bg-secondary text-secondary-foreground relative">
             <div className="container mx-auto px-6 max-w-6xl">
-                <div className="mb-20">
-                    <span className="text-accent text-xs tracking-[0.2em] uppercase font-sans mb-4 block">Our Expertise</span>
-                    <h2 className="text-4xl md:text-5xl font-mincho font-bold">業務分野</h2>
-                </div>
-
                 <div className="flex flex-col">
                     {expertise.map((item, index) => {
                         const isExpanded = expandedId === item.id

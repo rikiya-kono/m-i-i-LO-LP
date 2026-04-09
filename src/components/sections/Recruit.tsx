@@ -7,21 +7,8 @@ export function Recruit() {
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
     return (
-        <section ref={sectionRef} id="recruit" className="py-32 relative bg-[var(--color-secondary)]">
+        <section ref={sectionRef} id="recruit" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
             <div className="container mx-auto px-6 max-w-5xl">
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-accent-en mb-4 block">Recruitment</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                        採用情報
-                    </h2>
-                    <div className="accent-line mt-6" />
-                </motion.div>
-
                 <div className="space-y-12">
                     {/* Lawyer */}
                     <motion.div

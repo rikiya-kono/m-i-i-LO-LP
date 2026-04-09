@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { publications } from '../data/content'
+import { publications } from '../../data'
 import { BookOpen, ChevronDown } from 'lucide-react'
 
 export function Publications() {
@@ -11,22 +11,8 @@ export function Publications() {
     const displayed = showAll ? publications : publications.slice(0, 10)
 
     return (
-        <section ref={sectionRef} id="publications" className="py-32 relative bg-background">
+        <section ref={sectionRef} id="publications" className="pt-8 pb-24 relative bg-background">
             <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-                {/* Section header */}
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-accent-en mb-4 block">Publications</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                        著作関係
-                    </h2>
-                    <div className="accent-line mt-6" />
-                </motion.div>
-
                 {/* Publications list */}
                 <div className="space-y-0">
                     {displayed.map((pub, index) => (

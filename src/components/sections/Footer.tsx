@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { LegalModal, type LegalPage } from './LegalModal'
+import { LegalModal, type LegalPage } from '../ui/modals'
 
 export function Footer() {
     const [legalPage, setLegalPage] = useState<LegalPage>(null)

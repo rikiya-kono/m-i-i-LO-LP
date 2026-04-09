@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { news } from '../data/content'
+import { news } from '../../data'
 
 const categoryColors: Record<string, string> = {
     '著作': 'text-amber-400 bg-amber-400/10',
@@ -13,21 +13,8 @@ export function News() {
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
     return (
-        <section ref={sectionRef} id="news" className="py-32 relative bg-[var(--color-secondary)]">
+        <section ref={sectionRef} id="news" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
             <div className="container mx-auto px-6 max-w-5xl">
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-accent-en mb-4 block">Latest News</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                        最新情報
-                    </h2>
-                    <div className="accent-line mt-6" />
-                </motion.div>
-
                 <div className="space-y-0">
                     {news.map((item, index) => (
                         <motion.div

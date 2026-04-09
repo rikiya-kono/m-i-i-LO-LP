@@ -1,18 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, User } from 'lucide-react'
 import { useEffect } from 'react'
-
-type Lawyer = {
-    id: string
-    name: string
-    nameEn: string
-    role: string
-    education: string[]
-    career: string[]
-    specialties: string[]
-    bar: string
-    languages: string[]
-}
+import type { Lawyer } from '../../../types/lawyer'
 
 type Props = {
     lawyer: Lawyer | null
@@ -69,9 +58,17 @@ export function LawyerModal({ lawyer, onClose }: Props) {
 
                             {/* Header */}
                             <div className="flex items-start gap-6 mb-12">
-                                <div className="w-20 h-20 shrink-0 rounded-full bg-background flex items-center justify-center text-muted-foreground border border-white/10">
-                                    <User className="w-9 h-9" />
-                                </div>
+                                {lawyer.photoUrl ? (
+                                    <img
+                                        src={lawyer.photoUrl}
+                                        alt={lawyer.name}
+                                        className="w-20 h-20 shrink-0 rounded-full object-cover border border-white/10 bg-background"
+                                    />
+                                ) : (
+                                    <div className="w-20 h-20 shrink-0 rounded-full bg-background flex items-center justify-center text-muted-foreground border border-white/10">
+                                        <User className="w-9 h-9" />
+                                    </div>
+                                )}
                                 <div>
                                     <span className="text-xs text-[var(--color-primary)] tracking-widest uppercase mb-1 block">{lawyer.role}</span>
                                     <h2 className="text-3xl font-mincho font-bold text-foreground mb-1">{lawyer.name}</h2>
@@ -126,6 +123,23 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                     ))}
                                 </ul>
                             </div>
+
+                            {lawyer.majorAchievements && lawyer.majorAchievements.length > 0 && (
+                                <div className="mb-10">
+                                    <h3 className="text-xs font-medium text-[var(--color-primary)] uppercase tracking-widest mb-4 flex items-center gap-3">
+                                        <span className="w-6 h-px bg-[var(--color-primary)]" />
+                                        主要実績
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        {lawyer.majorAchievements.map((item, i) => (
+                                            <li key={i} className="text-sm text-foreground/80 flex gap-3 leading-relaxed">
+                                                <span className="w-1 h-1 rounded-full bg-[var(--color-primary)] mt-2 shrink-0" />
+                                                {item}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
 
                             {/* Languages */}
                             <div>
