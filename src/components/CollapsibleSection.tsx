@@ -11,10 +11,12 @@ export function CollapsibleSection({ title, titleEn, children }: Props) {
     const [isOpen, setIsOpen] = useState(false)
     const headerRef = useRef<HTMLDivElement>(null)
 
-    const close = () => {
-        // 先にヘッダー位置へ瞬時スクロール（smooth だと height 崩壊アニメと競合する）
+    // 下部ボタン用：ヘッダー位置へ瞬時スクロールしてから閉じる
+    // fixed header の高さ分オフセットして見切れを防ぐ
+    const closeWithScroll = () => {
         if (headerRef.current) {
-            const top = headerRef.current.getBoundingClientRect().top + window.scrollY
+            const fixedHeaderHeight = (document.querySelector('header') as HTMLElement)?.offsetHeight ?? 80
+            const top = headerRef.current.getBoundingClientRect().top + window.scrollY - fixedHeaderHeight
             window.scrollTo({ top, behavior: 'instant' })
         }
         setIsOpen(false)
@@ -23,11 +25,11 @@ export function CollapsibleSection({ title, titleEn, children }: Props) {
     return (
         <div className="border-b border-white/5">
 
-            {/* タイトルバー — 常に表示、開閉どちらでもここに閉じるボタン */}
+            {/* タイトルバー — 常に表示。上部ボタンはスクロールなしで閉じるだけ */}
             <div
                 ref={headerRef}
                 className="flex items-center justify-between px-8 md:px-16 xl:px-24 py-8 md:py-10 cursor-pointer group"
-                onClick={() => (isOpen ? close() : setIsOpen(true))}
+                onClick={() => setIsOpen(v => !v)}
             >
                 <div>
                     <p className="text-[9px] font-sans tracking-[0.4em] text-primary/70 uppercase mb-1">
@@ -69,10 +71,10 @@ export function CollapsibleSection({ title, titleEn, children }: Props) {
                     >
                         {children}
 
-                        {/* 下部閉じるボタン */}
+                        {/* 下部閉じるボタン — スクロールしてヘッダーへ戻る */}
                         <div className="flex justify-center py-10 border-t border-white/5">
                             <button
-                                onClick={close}
+                                onClick={closeWithScroll}
                                 className="group flex items-center gap-3 text-[10px] font-sans tracking-[0.35em] text-muted-foreground hover:text-primary transition-colors duration-300 uppercase"
                             >
                                 <div className="w-7 h-7 border border-white/20 group-hover:border-primary/60 flex items-center justify-center transition-colors duration-300 rotate-45">
