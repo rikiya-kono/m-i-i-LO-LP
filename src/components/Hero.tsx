@@ -61,8 +61,8 @@ export function Hero() {
                     {/* 事務所名 — 主タイトル */}
                     <div className="overflow-hidden mb-4 md:mb-6">
                         <motion.h1
-                            className="font-mincho font-bold text-foreground leading-none tracking-tight"
-                            style={{ fontSize: 'clamp(2.8rem, 8.5vw, 8rem)' }}
+                            className="font-mincho font-bold text-foreground leading-none tracking-tight whitespace-nowrap"
+                            style={{ fontSize: 'clamp(1.75rem, 9.2vw, 8rem)' }}
                             initial={{ y: '110%' }}
                             animate={mounted ? { y: 0 } : {}}
                             transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -73,7 +73,7 @@ export function Hero() {
                     <div className="overflow-hidden mb-12 md:mb-16">
                         <motion.h2
                             className="font-mincho font-normal text-white/40 leading-none tracking-[0.2em]"
-                            style={{ fontSize: 'clamp(1.4rem, 4vw, 3.8rem)' }}
+                            style={{ fontSize: 'clamp(1rem, 4.5vw, 3.8rem)' }}
                             initial={{ y: '110%' }}
                             animate={mounted ? { y: 0 } : {}}
                             transition={{ duration: 1.1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
