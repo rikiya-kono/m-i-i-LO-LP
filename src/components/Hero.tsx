@@ -1,59 +1,129 @@
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export function Hero() {
+    const [mounted, setMounted] = useState(false)
+    useEffect(() => { setMounted(true) }, [])
+
     return (
-        <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-background">
-            {/* Background Texture/Grain */}
-            <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" style={{
-                backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.95\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")'
+        <section className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#070707]">
+
+            {/* 背景 — 極細グリッド線 */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+                backgroundImage: `
+                    linear-gradient(rgba(201,162,39,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(201,162,39,0.04) 1px, transparent 1px)
+                `,
+                backgroundSize: '80px 80px',
             }} />
 
-            {/* Asymmetric Background Elements */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-                <div className="absolute top-[-10%] right-[-5%] w-[60vh] h-[60vh] rounded-full bg-primary/5 blur-[120px]" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[70vh] h-[70vh] rounded-full bg-muted/10 blur-[100px]" />
+            {/* 右端装飾ライン */}
+            <motion.div
+                className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent"
+                initial={{ scaleY: 0 }}
+                animate={mounted ? { scaleY: 1 } : {}}
+                transition={{ duration: 2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            />
+
+            {/* 左端竪書きラベル */}
+            <div className="absolute left-6 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-6">
+                <motion.div
+                    className="writing-vertical text-[10px] text-white/15 tracking-[0.35em] font-sans"
+                    initial={{ opacity: 0 }}
+                    animate={mounted ? { opacity: 1 } : {}}
+                    transition={{ duration: 1.5, delay: 1.8 }}
+                >
+                    MIYAKE · IMAI · IKEDA
+                </motion.div>
+                <motion.div
+                    className="w-px flex-1 bg-white/10"
+                    style={{ height: 80 }}
+                    initial={{ scaleY: 0 }}
+                    animate={mounted ? { scaleY: 1 } : {}}
+                    transition={{ duration: 1, delay: 2 }}
+                />
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 h-screen flex flex-col justify-center items-center">
+            {/* メインコンテンツ */}
+            <div className="container mx-auto px-8 md:px-16 xl:px-24 pt-24">
+                <div className="max-w-5xl">
 
-                {/* Main Content - Centered & Elegant */}
-                <div className="flex flex-col items-center justify-center space-y-10 text-center z-20">
-
-                    {/* Main Title - Office Name */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
-                    >
-                        <h1 className="flex flex-col items-center font-mincho font-bold text-foreground drop-shadow-2xl">
-                            <span className="text-4xl md:text-6xl lg:text-7xl tracking-widest leading-tight">
-                                三宅・今井・池田<br />
-                                <span className="inline-block mt-4">法律事務所</span>
-                            </span>
-                        </h1>
-                    </motion.div>
-
-                    {/* Subtitle / English Name */}
+                    {/* 創立年 */}
                     <motion.p
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 1, delay: 0.5 }}
-                        className="text-sm md:text-lg font-serif text-muted-foreground italic tracking-wider mt-8"
+                        className="text-[10px] md:text-xs font-sans tracking-[0.5em] text-primary/60 uppercase mb-10 md:mb-14"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={mounted ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.3 }}
                     >
-                        Miyake, Imai & Ikeda Law Office
+                        Est.&ensp;1972
                     </motion.p>
+
+                    {/* 事務所名 — 主タイトル */}
+                    <div className="overflow-hidden mb-4 md:mb-6">
+                        <motion.h1
+                            className="font-mincho font-bold text-foreground leading-none tracking-tight"
+                            style={{ fontSize: 'clamp(2.8rem, 8.5vw, 8rem)' }}
+                            initial={{ y: '110%' }}
+                            animate={mounted ? { y: 0 } : {}}
+                            transition={{ duration: 1.1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            三宅・今井・池田
+                        </motion.h1>
+                    </div>
+                    <div className="overflow-hidden mb-12 md:mb-16">
+                        <motion.h2
+                            className="font-mincho font-normal text-white/40 leading-none tracking-[0.2em]"
+                            style={{ fontSize: 'clamp(1.4rem, 4vw, 3.8rem)' }}
+                            initial={{ y: '110%' }}
+                            animate={mounted ? { y: 0 } : {}}
+                            transition={{ duration: 1.1, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        >
+                            法律事務所
+                        </motion.h2>
+                    </div>
+
+                    {/* 区切りライン + 英語名 */}
+                    <motion.div
+                        className="flex items-center gap-6"
+                        initial={{ opacity: 0 }}
+                        animate={mounted ? { opacity: 1 } : {}}
+                        transition={{ duration: 1, delay: 1.2 }}
+                    >
+                        <motion.div
+                            className="h-px bg-primary/40"
+                            initial={{ width: 0 }}
+                            animate={mounted ? { width: 56 } : {}}
+                            transition={{ duration: 0.8, delay: 1.4 }}
+                        />
+                        <p className="text-[10px] md:text-xs font-sans tracking-[0.35em] text-white/35 uppercase">
+                            Miyake,&ensp;Imai&ensp;&amp;&ensp;Ikeda&ensp;Law&ensp;Office
+                        </p>
+                    </motion.div>
                 </div>
             </div>
 
-            {/* Scroll Indicator */}
+            {/* ボトム横ライン */}
             <motion.div
+                className="absolute bottom-0 left-0 right-0 h-px"
+                style={{ background: 'linear-gradient(90deg, transparent 0%, rgba(201,162,39,0.15) 50%, transparent 100%)' }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-8 left-8 md:left-1/2 md:-translate-x-1/2 flex items-center gap-4 text-xs tracking-widest text-muted-foreground/50 rotate-90 md:rotate-0 origin-left"
+                animate={mounted ? { opacity: 1 } : {}}
+                transition={{ duration: 1.5, delay: 1.6 }}
+            />
+
+            {/* スクロール誘導 — 右下 */}
+            <motion.div
+                className="absolute bottom-8 right-8 flex flex-col items-center gap-3"
+                initial={{ opacity: 0 }}
+                animate={mounted ? { opacity: 1 } : {}}
+                transition={{ duration: 1, delay: 2.2 }}
             >
-                <span>SCROLL</span>
-                <div className="w-12 h-[1px] bg-current" />
+                <span className="writing-vertical text-[9px] font-sans tracking-[0.4em] text-white/20 uppercase">Scroll</span>
+                <motion.div
+                    className="w-px bg-white/20"
+                    animate={{ height: [20, 48, 20] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                />
             </motion.div>
         </section>
     )

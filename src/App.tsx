@@ -1,7 +1,8 @@
 import { Header } from './components/Header'
 import { Hero } from './components/Hero'
-import { News } from './components/News'
 import { About } from './components/About'
+import { AccordionReveal } from './components/AccordionReveal'
+import { News } from './components/News'
 import { Expertise } from './components/Expertise'
 import { CaseStudies } from './components/CaseStudies'
 import { Team } from './components/Team'
@@ -12,18 +13,20 @@ import { Footer } from './components/Footer'
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-[#070707] text-foreground">
       <Header />
       <main>
         <Hero />
-        <News />
         <About />
-        <Expertise />
-        <CaseStudies />
-        <Team />
-        <Publications />
-        <Recruit />
-        <Contact />
+        <AccordionReveal>
+          <News />
+          <Expertise />
+          <CaseStudies />
+          <Team />
+          <Publications />
+          <Recruit />
+          <Contact />
+        </AccordionReveal>
       </main>
       <Footer />
     </div>

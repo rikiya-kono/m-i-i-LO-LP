@@ -132,5 +132,48 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #444;
+}
+
+/* ────────────────────────────────
+   Utility classes used in components
+──────────────────────────────── */
+
+/* アクセントライン（ゴールド水平線） */
+.accent-line {
+  width: 40px;
+  height: 1px;
+  background: var(--color-primary);
+  opacity: 0.7;
+}
+
+/* 英語アクセントラベル */
+.text-accent-en {
+  font-family: var(--font-family-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+/* カードホバー */
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+}
+
+/* セクション間ブリッジ（超暗背景） */
+.bg-bridge {
+  background-color: #070707;
+}
+
+/* フォーカスリセット */
+button:focus-visible,
+a:focus-visible {
+  outline: 1px solid var(--color-primary);
+  outline-offset: 3px;
 }
