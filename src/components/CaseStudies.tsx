@@ -29,7 +29,7 @@ export function CaseStudies() {
                     <div className="absolute left-0 md:left-24 top-0 bottom-0 w-px bg-[var(--color-border)]" />
 
                     <div className="space-y-0">
-                        {caseStudies.map((item, index) => (
+                        {caseStudies.filter(item => !item.hidden).map((item, index) => (
                             <motion.div
                                 key={index}
                                 className="relative flex gap-8 md:gap-16 py-8 border-b border-[var(--color-border)] last:border-b-0 group"
