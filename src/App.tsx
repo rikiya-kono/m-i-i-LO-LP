@@ -1,15 +1,17 @@
-import { Header } from './components/Header'
-import { Hero } from './components/Hero'
-import { About } from './components/About'
-import { CollapsibleSection } from './components/CollapsibleSection'
-import { News } from './components/News'
-import { Expertise } from './components/Expertise'
-import { CaseStudies } from './components/CaseStudies'
-import { Team } from './components/Team'
-import { Publications } from './components/Publications'
-import { Recruit } from './components/Recruit'
-import { Contact } from './components/Contact'
-import { Footer } from './components/Footer'
+import {
+  About,
+  CaseStudies,
+  Contact,
+  Expertise,
+  Footer,
+  Header,
+  Hero,
+  News,
+  Publications,
+  Recruit,
+  Team,
+} from './components/sections'
+import { CollapsibleSection } from './components/ui/modals'
 
 function App() {
   return (

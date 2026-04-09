@@ -25,22 +25,8 @@ export function Contact() {
     ]
 
     return (
-        <section ref={sectionRef} id="contact" className="py-32 relative bg-[var(--color-secondary)]">
+        <section ref={sectionRef} id="contact" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
             <div className="container mx-auto px-6 max-w-7xl">
-                {/* Section header - AMT style centered */}
-                <motion.div
-                    className="mb-20 text-center"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-accent-en mb-4 block">Access</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                        アクセス
-                    </h2>
-                    <div className="accent-line mt-6 mx-auto" />
-                </motion.div>
-
                 <div className="grid lg:grid-cols-2 gap-16">
                     {/* Map */}
                     <motion.div

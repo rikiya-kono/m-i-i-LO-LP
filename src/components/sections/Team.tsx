@@ -1,10 +1,9 @@
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { lawyers } from '../data/content'
+import { lawyers } from '../../data'
 import { User } from 'lucide-react'
-import { LawyerModal } from './LawyerModal'
-
-type Lawyer = typeof lawyers.partners[0]
+import { LawyerModal } from '../ui/modals'
+import type { Lawyer } from '../../types/lawyer'
 
 const FILTERS: { label: string; key: string | null }[] = [
     { label: 'すべて', key: null },
@@ -21,6 +20,28 @@ function matchesFilter(lawyer: { specialties: string[] }, key: string | null) {
     return lawyer.specialties.some(s => s.includes(key))
 }
 
+function LawyerAvatar({ lawyer, large = false }: { lawyer: Lawyer; large?: boolean }) {
+    const sizeClass = large ? 'w-16 h-16' : 'w-14 h-14'
+    const iconClass = large ? 'w-7 h-7' : 'w-6 h-6'
+    const accentClass = large ? 'group-hover:bg-[var(--color-primary)]' : 'group-hover:bg-[var(--color-accent)]'
+
+    if (lawyer.photoUrl) {
+        return (
+            <img
+                src={lawyer.photoUrl}
+                alt={lawyer.name}
+                className={`${sizeClass} mx-auto mb-4 rounded-full object-cover border border-white/10 bg-background`}
+            />
+        )
+    }
+
+    return (
+        <div className={`${sizeClass} mx-auto mb-4 rounded-full bg-background flex items-center justify-center text-[var(--color-muted-foreground)] ${accentClass} group-hover:text-black transition-all duration-300`}>
+            <User className={iconClass} />
+        </div>
+    )
+}
+
 export function Team() {
     const sectionRef = useRef(null)
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
@@ -32,22 +53,8 @@ export function Team() {
 
     return (
         <>
-            <section ref={sectionRef} id="team" className="py-32 relative bg-[var(--color-secondary)]">
+            <section ref={sectionRef} id="team" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    {/* Section header */}
-                    <motion.div
-                        className="mb-12 text-center"
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <span className="text-accent-en mb-4 block">Our Lawyers</span>
-                        <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                            弁護士紹介
-                        </h2>
-                        <div className="accent-line mt-6 mx-auto" />
-                    </motion.div>
-
                     {/* Specialty filter */}
                     <motion.div
                         className="mb-16 flex flex-wrap justify-center gap-2"
@@ -95,9 +102,7 @@ export function Team() {
                                         onClick={() => setSelectedLawyer(lawyer)}
                                     >
                                         <div className="bg-card border border-white/5 p-6 card-hover hover:border-primary/30 transition-colors">
-                                            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-background flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-primary)] group-hover:text-black transition-all duration-300">
-                                                <User className="w-7 h-7" />
-                                            </div>
+                                            <LawyerAvatar lawyer={lawyer} large />
                                             <p className="font-medium text-sm text-[var(--color-foreground)]">
                                                 {lawyer.name}
                                             </p>
@@ -144,9 +149,7 @@ export function Team() {
                                         onClick={() => setSelectedLawyer(lawyer)}
                                     >
                                         <div className="bg-card border border-white/5 p-5 card-hover hover:border-primary/30 transition-colors">
-                                            <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-background flex items-center justify-center text-[var(--color-muted-foreground)] group-hover:bg-[var(--color-accent)] group-hover:text-black transition-all duration-300">
-                                                <User className="w-6 h-6" />
-                                            </div>
+                                            <LawyerAvatar lawyer={lawyer} />
                                             <p className="font-medium text-sm text-[var(--color-foreground)]">
                                                 {lawyer.name}
                                             </p>

@@ -1,28 +1,14 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { caseStudies } from '../data/content'
+import { caseStudies } from '../../data'
 
 export function CaseStudies() {
     const sectionRef = useRef(null)
     const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
 
     return (
-        <section ref={sectionRef} id="cases" className="py-32 relative overflow-hidden bg-background">
+        <section ref={sectionRef} id="cases" className="pt-8 pb-24 relative overflow-hidden bg-background">
             <div className="container mx-auto px-6 relative z-10 max-w-7xl">
-                {/* Section header */}
-                <motion.div
-                    className="mb-20"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8 }}
-                >
-                    <span className="text-accent-en mb-4 block">Track Record</span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-foreground)]">
-                        主要な実績
-                    </h2>
-                    <div className="accent-line mt-6" />
-                </motion.div>
-
                 {/* Timeline - Modern minimal style */}
                 <div className="relative">
                     {/* Vertical line */}
