@@ -12,9 +12,12 @@ export function CollapsibleSection({ title, titleEn, children }: Props) {
     const headerRef = useRef<HTMLDivElement>(null)
 
     const close = () => {
+        // 先にヘッダー位置へ瞬時スクロール（smooth だと height 崩壊アニメと競合する）
+        if (headerRef.current) {
+            const top = headerRef.current.getBoundingClientRect().top + window.scrollY
+            window.scrollTo({ top, behavior: 'instant' })
+        }
         setIsOpen(false)
-        // 閉じると同時にヘッダー位置へスクロール
-        headerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 
     return (
