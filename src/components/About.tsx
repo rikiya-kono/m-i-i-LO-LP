@@ -56,7 +56,7 @@ export function About() {
                     {/* 本文 */}
                     <div className="md:col-span-8">
                         <motion.div
-                            className="space-y-7 text-sm text-muted-foreground leading-[2] font-sans"
+                            className="space-y-7 text-sm text-foreground/80 leading-[2] font-sans"
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}

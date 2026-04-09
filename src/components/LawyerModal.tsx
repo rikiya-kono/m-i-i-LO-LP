@@ -75,8 +75,8 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                 <div>
                                     <span className="text-xs text-[var(--color-primary)] tracking-widest uppercase mb-1 block">{lawyer.role}</span>
                                     <h2 className="text-3xl font-mincho font-bold text-foreground mb-1">{lawyer.name}</h2>
-                                    <p className="text-sm text-muted-foreground italic">{lawyer.nameEn}</p>
-                                    <p className="text-xs text-muted-foreground mt-2">{lawyer.bar}</p>
+                                    <p className="text-sm text-foreground/60 italic">{lawyer.nameEn}</p>
+                                    <p className="text-xs text-foreground/55 mt-2">{lawyer.bar}</p>
                                 </div>
                             </div>
 
@@ -88,7 +88,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
                                     {lawyer.specialties.map((s) => (
-                                        <span key={s} className="text-xs px-3 py-1.5 border border-white/10 text-muted-foreground bg-background/30">
+                                        <span key={s} className="text-xs px-3 py-1.5 border border-white/10 text-foreground/75 bg-background/30">
                                             {s}
                                         </span>
                                     ))}
@@ -103,7 +103,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                 </h3>
                                 <ul className="space-y-2">
                                     {lawyer.education.map((item, i) => (
-                                        <li key={i} className="text-sm text-muted-foreground flex gap-3">
+                                        <li key={i} className="text-sm text-foreground/80 flex gap-3">
                                             <span className="w-1 h-1 rounded-full bg-[var(--color-primary)] mt-2 shrink-0" />
                                             {item}
                                         </li>
@@ -119,7 +119,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                 </h3>
                                 <ul className="space-y-2">
                                     {lawyer.career.map((item, i) => (
-                                        <li key={i} className="text-sm text-muted-foreground flex gap-3">
+                                        <li key={i} className="text-sm text-foreground/80 flex gap-3">
                                             <span className="w-1 h-1 rounded-full bg-[var(--color-primary)] mt-2 shrink-0" />
                                             {item}
                                         </li>
@@ -133,7 +133,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                     <span className="w-6 h-px bg-[var(--color-primary)]" />
                                     使用言語
                                 </h3>
-                                <p className="text-sm text-muted-foreground">{lawyer.languages.join('・')}</p>
+                                <p className="text-sm text-foreground/80">{lawyer.languages.join('・')}</p>
                             </div>
                         </div>
                     </motion.div>

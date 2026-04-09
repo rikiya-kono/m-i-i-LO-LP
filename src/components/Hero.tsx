@@ -72,7 +72,7 @@ export function Hero() {
                     </div>
                     <div className="overflow-hidden mb-12 md:mb-16">
                         <motion.h2
-                            className="font-mincho font-normal text-white/40 leading-none tracking-[0.2em]"
+                            className="font-mincho font-normal text-white/70 leading-none tracking-[0.2em]"
                             style={{ fontSize: 'clamp(1rem, 4.5vw, 3.8rem)' }}
                             initial={{ y: '110%' }}
                             animate={mounted ? { y: 0 } : {}}
