@@ -15,10 +15,12 @@ export function Header() {
     }, [])
 
     const navItems = [
-        { name: 'About', href: '#about' },
-        { name: 'Expertise', href: '#expertise' },
-        { name: 'Team', href: '#team' },
-        { name: 'Contact', href: '#contact' },
+        { name: '事務所紹介', href: '#about' },
+        { name: '業務分野', href: '#expertise' },
+        { name: '弁護士紹介', href: '#team' },
+        { name: '著作関係', href: '#publications' },
+        { name: '採用情報', href: '#recruit' },
+        { name: 'アクセス', href: '#contact' },
     ]
 
     return (
@@ -26,35 +28,31 @@ export function Header() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 {/* Logo */}
                 <a href="#" className="relative z-50 group">
-                    <h1 className="text-2xl font-serif tracking-tight text-foreground transition-colors group-hover:text-primary">
-                        Miyake, Imai <span className="text-muted-foreground italic">&</span> Ikeda
+                    <h1 className="text-lg md:text-xl font-mincho tracking-tight text-foreground transition-colors group-hover:text-primary leading-tight">
+                        三宅・今井・池田<br className="hidden sm:block" />
+                        <span className="text-sm font-normal text-muted-foreground hidden sm:block">法律事務所</span>
                     </h1>
                 </a>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center gap-12">
+                <nav className="hidden lg:flex items-center gap-8">
                     {navItems.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
-                            className="text-sm uppercase tracking-[0.2em] text-muted-foreground hover:text-primary transition-colors relative group"
+                            className="text-xs tracking-wider text-muted-foreground hover:text-primary transition-colors relative group"
                         >
                             {item.name}
                             <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full" />
                         </a>
                     ))}
-                    <a
-                        href="#contact"
-                        className="px-6 py-2 border border-primary/30 text-primary text-xs uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                    >
-                        Consultation
-                    </a>
                 </nav>
 
                 {/* Mobile Menu Toggle */}
                 <button
-                    className="md:hidden relative z-50 text-foreground"
+                    className="lg:hidden relative z-50 text-foreground"
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    aria-label="メニュー"
                 >
                     {isMenuOpen ? <X /> : <Menu />}
                 </button>
@@ -66,8 +64,8 @@ export function Header() {
                             initial={{ opacity: 0, x: '100%' }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: '100%' }}
-                            transition={{ type: "tween", duration: 0.4 }}
-                            className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center space-y-8 md:hidden"
+                            transition={{ type: 'tween', duration: 0.4 }}
+                            className="fixed inset-0 bg-background z-40 flex flex-col items-center justify-center space-y-8 lg:hidden"
                         >
                             {navItems.map((item) => (
                                 <a
