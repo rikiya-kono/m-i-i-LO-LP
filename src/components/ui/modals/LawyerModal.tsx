@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, User } from 'lucide-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { Lawyer } from '../../../types/lawyer'
 
 type Props = {
@@ -9,6 +9,8 @@ type Props = {
 }
 
 export function LawyerModal({ lawyer, onClose }: Props) {
+    const [isDesktop, setIsDesktop] = useState(false)
+
     useEffect(() => {
         if (lawyer) {
             document.body.style.overflow = 'hidden'
@@ -26,6 +28,17 @@ export function LawyerModal({ lawyer, onClose }: Props) {
         return () => window.removeEventListener('keydown', handleKey)
     }, [onClose])
 
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(min-width: 768px)')
+        const updateLayout = (event: MediaQueryList | MediaQueryListEvent) => {
+            setIsDesktop(event.matches)
+        }
+
+        updateLayout(mediaQuery)
+        mediaQuery.addEventListener('change', updateLayout)
+        return () => mediaQuery.removeEventListener('change', updateLayout)
+    }, [])
+
     return (
         <AnimatePresence>
             {lawyer && (
@@ -41,17 +54,27 @@ export function LawyerModal({ lawyer, onClose }: Props) {
 
                     {/* Panel */}
                     <motion.div
-                        className="fixed right-0 top-0 h-full w-full max-w-2xl bg-[var(--color-secondary)] border-l border-white/10 z-50 overflow-y-auto"
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'tween', duration: 0.4, ease: 'easeInOut' }}
+                        className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 md:items-stretch md:justify-end md:p-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                     >
-                        <div className="p-10 md:p-16">
+                        <motion.div
+                            className="pointer-events-auto relative h-full max-h-[80vh] w-full max-w-2xl overflow-y-auto border border-white/10 bg-[var(--color-secondary)] md:max-h-none md:border-y-0 md:border-r-0 md:border-l"
+                            initial={isDesktop ? { x: '100%' } : { scale: 0.96, y: 16, opacity: 0 }}
+                            animate={isDesktop ? { x: 0 } : { scale: 1, y: 0, opacity: 1 }}
+                            exit={isDesktop ? { x: '100%' } : { scale: 0.96, y: 8, opacity: 0 }}
+                            transition={
+                                isDesktop
+                                    ? { type: 'tween', duration: 0.4, ease: 'easeInOut' }
+                                    : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
+                            }
+                        >
+                        <div className="p-8 md:p-16">
                             {/* Close button */}
                             <button
                                 onClick={onClose}
-                                className="absolute top-8 right-8 w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors border border-white/10 hover:border-white/30"
+                                className="absolute right-6 top-6 flex h-10 w-10 items-center justify-center border border-white/10 text-muted-foreground transition-colors hover:border-white/30 hover:text-foreground md:right-8 md:top-8"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -150,6 +173,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                                 <p className="text-sm text-foreground/80">{lawyer.languages.join('・')}</p>
                             </div>
                         </div>
+                        </motion.div>
                     </motion.div>
                 </>
             )}
