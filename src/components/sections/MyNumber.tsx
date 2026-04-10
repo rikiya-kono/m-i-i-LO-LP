@@ -35,13 +35,7 @@ export function MyNumber() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2
-                            className="font-mincho font-bold leading-tight text-foreground"
-                            style={{ fontSize: 'clamp(1.9rem, 3.4vw, 2.8rem)' }}
-                        >
-                            マイナンバーについて
-                        </h2>
-                        <p className="mt-4 max-w-sm text-sm leading-7 text-muted-foreground">
+                        <p className="max-w-sm text-sm leading-7 text-muted-foreground">
                             請求業務と支払調書の記載方法に関するご案内を掲載しています。
                         </p>
                     </motion.div>
