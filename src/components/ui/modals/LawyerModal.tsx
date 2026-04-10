@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, User } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import type { Lawyer } from '../../../types/lawyer'
 
 type Props = {
@@ -39,7 +40,9 @@ export function LawyerModal({ lawyer, onClose }: Props) {
         return () => mediaQuery.removeEventListener('change', updateLayout)
     }, [])
 
-    return (
+    if (typeof document === 'undefined') return null
+
+    return createPortal(
         <AnimatePresence>
             {lawyer && (
                 <>
@@ -178,5 +181,7 @@ export function LawyerModal({ lawyer, onClose }: Props) {
                 </>
             )}
         </AnimatePresence>
+        ,
+        document.body
     )
 }
