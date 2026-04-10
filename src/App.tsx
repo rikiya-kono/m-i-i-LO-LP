@@ -6,6 +6,7 @@ import {
   Footer,
   Header,
   Hero,
+  MyNumber,
   News,
   Publications,
   Recruit,
@@ -50,6 +51,11 @@ function App() {
         <div id="recruit">
           <CollapsibleSection title="採用情報" titleEn="Recruitment">
             <Recruit />
+          </CollapsibleSection>
+        </div>
+        <div id="mynumber">
+          <CollapsibleSection title="マイナンバーについて" titleEn="My Number">
+            <MyNumber />
           </CollapsibleSection>
         </div>
         <div id="contact">
