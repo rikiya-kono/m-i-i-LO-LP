@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { expertise, lawyers } from '../../data'
 
 const allLawyers = [...lawyers.partners, ...lawyers.associates]
+const SHOW_EXPERTISE_LAWYERS = false
 
 // expertise ID → lawyer specialties の部分一致キーワード
 const EXPERTISE_KEYWORDS: Record<string, string[]> = {
@@ -34,20 +35,20 @@ export function Expertise() {
             <div className="container mx-auto px-6 max-w-6xl">
                 <div className="flex flex-col">
                     {expertise.map((item, index) => {
-                        const isExpanded = expandedId === item.id
+                        const isExpanded = SHOW_EXPERTISE_LAWYERS && expandedId === item.id
                         const matchedLawyers = getMatchingLawyers(item.id)
 
                         return (
                             <div key={item.id}>
                                 <motion.div
-                                    className="relative border-t border-white/10 group cursor-pointer"
+                                    className={`relative border-t border-white/10 group ${SHOW_EXPERTISE_LAWYERS ? 'cursor-pointer' : ''}`}
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.07 }}
                                     onMouseEnter={() => setHoveredIndex(index)}
                                     onMouseLeave={() => setHoveredIndex(null)}
-                                    onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                                    onClick={SHOW_EXPERTISE_LAWYERS ? () => setExpandedId(isExpanded ? null : item.id) : undefined}
                                 >
                                     <div className={`py-10 flex flex-col md:flex-row md:items-baseline justify-between transition-all duration-500 ${hoveredIndex === index ? 'translate-x-4' : ''}`}>
                                         <div className="flex items-baseline gap-6 md:w-1/3">
@@ -72,13 +73,15 @@ export function Expertise() {
                                             <p className="text-sm text-foreground/80 text-justify leading-relaxed">
                                                 {item.desc}
                                             </p>
-                                            <motion.div
-                                                animate={{ rotate: isExpanded ? 180 : 0 }}
-                                                transition={{ duration: 0.3 }}
-                                                className="shrink-0 mt-1"
-                                            >
-                                                <ChevronDown className={`w-5 h-5 text-primary transition-opacity duration-300 ${hoveredIndex === index || isExpanded ? 'opacity-100' : 'opacity-25'}`} />
-                                            </motion.div>
+                                            {SHOW_EXPERTISE_LAWYERS && (
+                                                <motion.div
+                                                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                                                    transition={{ duration: 0.3 }}
+                                                    className="shrink-0 mt-1"
+                                                >
+                                                    <ChevronDown className={`w-5 h-5 text-primary transition-opacity duration-300 ${hoveredIndex === index || isExpanded ? 'opacity-100' : 'opacity-25'}`} />
+                                                </motion.div>
+                                            )}
                                         </div>
                                     </div>
 
@@ -87,7 +90,7 @@ export function Expertise() {
 
                                 {/* 担当弁護士 ぽぽぽっと展開 */}
                                 <AnimatePresence initial={false}>
-                                    {isExpanded && matchedLawyers.length > 0 && (
+                                    {SHOW_EXPERTISE_LAWYERS && isExpanded && matchedLawyers.length > 0 && (
                                         <motion.div
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: 'auto', opacity: 1 }}

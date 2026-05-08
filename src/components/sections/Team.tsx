@@ -14,6 +14,7 @@ const FILTERS: { label: string; key: string | null }[] = [
     { label: '訴訟', key: '訴訟' },
     { label: 'コンプライアンス', key: 'コンプライアンス' },
 ]
+const SHOW_SPECIALTY_FILTER = false
 
 function matchesFilter(lawyer: { specialties: string[] }, key: string | null) {
     if (!key) return true
@@ -55,27 +56,28 @@ export function Team() {
         <>
             <section ref={sectionRef} id="team" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    {/* Specialty filter */}
-                    <motion.div
-                        className="mb-16 flex flex-wrap justify-center gap-2"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.15, duration: 0.6 }}
-                    >
-                        {FILTERS.map((f) => (
-                            <button
-                                key={f.label}
-                                onClick={() => setActiveFilter(f.key)}
-                                className={`text-[10px] font-sans tracking-[0.25em] px-4 py-2 border transition-all duration-250 ${
-                                    activeFilter === f.key
-                                        ? 'border-primary text-primary bg-primary/10'
-                                        : 'border-white/15 text-muted-foreground hover:border-white/35 hover:text-foreground/70'
-                                }`}
-                            >
-                                {f.label}
-                            </button>
-                        ))}
-                    </motion.div>
+                    {SHOW_SPECIALTY_FILTER && (
+                        <motion.div
+                            className="mb-16 flex flex-wrap justify-center gap-2"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={isInView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: 0.15, duration: 0.6 }}
+                        >
+                            {FILTERS.map((f) => (
+                                <button
+                                    key={f.label}
+                                    onClick={() => setActiveFilter(f.key)}
+                                    className={`text-[10px] font-sans tracking-[0.25em] px-4 py-2 border transition-all duration-250 ${
+                                        activeFilter === f.key
+                                            ? 'border-primary text-primary bg-primary/10'
+                                            : 'border-white/15 text-muted-foreground hover:border-white/35 hover:text-foreground/70'
+                                    }`}
+                                >
+                                    {f.label}
+                                </button>
+                            ))}
+                        </motion.div>
+                    )}
 
                     {/* Partners */}
                     <motion.div
