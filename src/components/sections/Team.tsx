@@ -5,20 +5,13 @@ import { User } from 'lucide-react'
 import { LawyerModal } from '../ui/modals'
 import type { Lawyer } from '../../types/lawyer'
 
-const FILTERS: { label: string; key: string | null }[] = [
-    { label: 'すべて', key: null },
-    { label: '企業再編・M&A', key: '企業再編' },
-    { label: '事業再生・倒産', key: '事業再生' },
-    { label: '国際', key: '国際' },
-    { label: '不動産', key: '不動産' },
-    { label: '訴訟', key: '訴訟' },
-    { label: 'コンプライアンス', key: 'コンプライアンス' },
-]
-const SHOW_SPECIALTY_FILTER = false
-
-function matchesFilter(lawyer: { specialties: string[] }, key: string | null) {
+export function matchesFilter(lawyer: { specialties: string[] }, key: string | null) {
     if (!key) return true
     return lawyer.specialties.some(s => s.includes(key))
+}
+
+export function filterLawyersBySpecialty<T extends { specialties: string[] }>(items: T[], key: string | null) {
+    return items.filter(lawyer => matchesFilter(lawyer, key))
 }
 
 function LawyerAvatar({ lawyer, large = false }: { lawyer: Lawyer; large?: boolean }) {
@@ -47,38 +40,14 @@ export function Team() {
     const sectionRef = useRef(null)
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
     const [selectedLawyer, setSelectedLawyer] = useState<Lawyer | null>(null)
-    const [activeFilter, setActiveFilter] = useState<string | null>(null)
 
-    const filteredPartners = lawyers.partners.filter(l => matchesFilter(l, activeFilter))
-    const filteredAssociates = lawyers.associates.filter(l => matchesFilter(l, activeFilter))
+    const filteredPartners = filterLawyersBySpecialty(lawyers.partners, null)
+    const filteredAssociates = filterLawyersBySpecialty(lawyers.associates, null)
 
     return (
         <>
             <section ref={sectionRef} id="team" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    {SHOW_SPECIALTY_FILTER && (
-                        <motion.div
-                            className="mb-16 flex flex-wrap justify-center gap-2"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ delay: 0.15, duration: 0.6 }}
-                        >
-                            {FILTERS.map((f) => (
-                                <button
-                                    key={f.label}
-                                    onClick={() => setActiveFilter(f.key)}
-                                    className={`text-[10px] font-sans tracking-[0.25em] px-4 py-2 border transition-all duration-250 ${
-                                        activeFilter === f.key
-                                            ? 'border-primary text-primary bg-primary/10'
-                                            : 'border-white/15 text-muted-foreground hover:border-white/35 hover:text-foreground/70'
-                                    }`}
-                                >
-                                    {f.label}
-                                </button>
-                            ))}
-                        </motion.div>
-                    )}
-
                     {/* Partners */}
                     <motion.div
                         className="mb-16"
