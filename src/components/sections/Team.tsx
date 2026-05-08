@@ -5,15 +5,6 @@ import { User } from 'lucide-react'
 import { LawyerModal } from '../ui/modals'
 import type { Lawyer } from '../../types/lawyer'
 
-export function matchesFilter(lawyer: { specialties: string[] }, key: string | null) {
-    if (!key) return true
-    return lawyer.specialties.some(s => s.includes(key))
-}
-
-export function filterLawyersBySpecialty<T extends { specialties: string[] }>(items: T[], key: string | null) {
-    return items.filter(lawyer => matchesFilter(lawyer, key))
-}
-
 function LawyerAvatar({ lawyer, large = false }: { lawyer: Lawyer; large?: boolean }) {
     const sizeClass = large ? 'w-16 h-16' : 'w-14 h-14'
     const iconClass = large ? 'w-7 h-7' : 'w-6 h-6'
@@ -41,9 +32,6 @@ export function Team() {
     const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
     const [selectedLawyer, setSelectedLawyer] = useState<Lawyer | null>(null)
 
-    const filteredPartners = filterLawyersBySpecialty(lawyers.partners, null)
-    const filteredAssociates = filterLawyersBySpecialty(lawyers.associates, null)
-
     return (
         <>
             <section ref={sectionRef} id="team" className="pt-8 pb-24 relative bg-[var(--color-secondary)]">
@@ -61,7 +49,7 @@ export function Team() {
                         </h3>
                         <AnimatePresence mode="popLayout">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6">
-                                {filteredPartners.map((lawyer) => (
+                                {lawyers.partners.map((lawyer) => (
                                     <motion.div
                                         key={lawyer.id}
                                         layout
@@ -83,15 +71,6 @@ export function Team() {
                                         </div>
                                     </motion.div>
                                 ))}
-                                {filteredPartners.length === 0 && (
-                                    <motion.p
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        className="col-span-full text-sm text-muted-foreground py-4"
-                                    >
-                                        該当する弁護士はいません
-                                    </motion.p>
-                                )}
                             </div>
                         </AnimatePresence>
                     </motion.div>
@@ -108,7 +87,7 @@ export function Team() {
                         </h3>
                         <AnimatePresence mode="popLayout">
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                                {filteredAssociates.map((lawyer) => (
+                                {lawyers.associates.map((lawyer) => (
                                     <motion.div
                                         key={lawyer.id}
                                         layout
@@ -130,15 +109,6 @@ export function Team() {
                                         </div>
                                     </motion.div>
                                 ))}
-                                {filteredAssociates.length === 0 && (
-                                    <motion.p
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        className="col-span-full text-sm text-muted-foreground py-4"
-                                    >
-                                        該当する弁護士はいません
-                                    </motion.p>
-                                )}
                             </div>
                         </AnimatePresence>
                     </motion.div>

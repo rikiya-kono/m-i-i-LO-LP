@@ -1,28 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { expertise, lawyers } from '../../data'
-
-const allLawyers = [...lawyers.partners, ...lawyers.associates]
-
-// expertise ID → lawyer specialties の部分一致キーワード
-export const EXPERTISE_KEYWORDS: Record<string, string[]> = {
-    counsel:           ['一般企業法務', '商事取引'],
-    corporate:         ['企業再編', 'M&A', 'コンプライアンス', '一般企業法務'],
-    realestate:        ['不動産'],
-    restructuring:     ['事業再生', '倒産'],
-    labor:             ['一般企業法務'],
-    international:     ['国際'],
-    litigation:        ['訴訟'],
-    personal:          ['一般民事'],
-    'court-appointed': ['事業再生', '倒産'],
-}
-
-export function getMatchingLawyers(expertiseId: string) {
-    const keys = EXPERTISE_KEYWORDS[expertiseId] ?? []
-    return allLawyers.filter(l =>
-        l.specialties.some(s => keys.some(k => s.includes(k)))
-    )
-}
+import { expertise } from '../../data'
 
 export function Expertise() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
